@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Send to Discord</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <input id="text" placeholder="Type Here" />
+    <button onclick="sendToDiscord()">Proceed</button>
+  </div>
+
+  <script>
+    function sendToDiscord() {
+      const text = document.getElementById("text").value;
+
+      fetch("https://discord.com/api/webhooks/1462587403184242788/dcNUoUwE7nD5ZXLXHEilbjh5pRdH-YjZriXI4rza-RX8aAu3nk4nRQwZxe_vbaEabFyX", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          content: text
+        })
+      });
+
+      document.getElementById("text").value = "";
+    }
+  </script>
+
+</body>
+</html>
